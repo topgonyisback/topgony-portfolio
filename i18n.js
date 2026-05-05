@@ -9,7 +9,9 @@ window.t = (ko, en) => (TG_LANG === 'en' && en) ? en : ko;
 
 window.setLang = (lang) => {
   localStorage.setItem('tg-lang', lang);
-  location.reload();
+  const url = new URL(location.href);
+  url.searchParams.delete('lang');
+  location.href = url.toString();
 };
 
 window.I18N = {

@@ -30,7 +30,7 @@
 @keyframes tg-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 @media (max-width:640px) {
   .brands { padding:24px 0; justify-content:flex-start; overflow:hidden; }
-  .brands__list { animation:tg-marquee 10s linear infinite; gap:0; flex-shrink:0; }
+  .brands__list { gap:0; flex-shrink:0; }
   .brands__logo { height:120px; width:auto; }
   .brands__item { font-size:17px; }
 }
@@ -129,10 +129,13 @@ document.getElementById('press').innerHTML = TG.press.map(p =>
 
 applyI18n();
 
-// 모바일에서 로고 마키 seamless 루프 — 세트 1회 복제
+// 모바일 마키 — 복제 완료 후 애니메이션 적용 (타이밍 불일치 방지)
 if (window.innerWidth <= 640) {
   const list = document.querySelector('.brands__list');
-  if (list) list.innerHTML += list.innerHTML;
+  if (list) {
+    list.innerHTML += list.innerHTML;
+    list.style.animation = 'tg-marquee 10s linear infinite';
+  }
 }
 </script>
 </body></html>

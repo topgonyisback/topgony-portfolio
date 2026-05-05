@@ -56,11 +56,10 @@ window.TG = {
     { n: '05', t: 'Edit + Deliver', d: '편집, 컬러 그레이딩, 사운드 믹스 후 최종 파일을 납품합니다. 수정 2회 포함.', d_en: 'Edit, color grade, and sound mix — then final delivery. 2 revision rounds included.', dur: '1—3주', dur_en: '1—3 weeks' },
   ],
   faq: [
-    { q: '견적 기준은?', q_en: 'How is pricing determined?', a: '복잡도, 촬영 일수, 로케이션, 장비, 후반 작업 범위에 따라 책정됩니다.', a_en: 'Based on complexity, shoot days, location, equipment, and post-production scope.' },
-    { q: '세로 영상(9:16)도 제작?', q_en: 'Do you shoot vertical (9:16)?', a: '기본적으로 16:9 + 9:16 멀티 포맷으로 설계합니다.', a_en: 'Default deliverables are designed for both 16:9 + 9:16 multi-format.' },
-    { q: '수도권 외 촬영 가능?', q_en: 'Available outside Seoul metro?', a: '국내 전 지역 가능. 해외는 일정·예산에 따라 논의.', a_en: 'Available nationwide. International on a case-by-case basis.' },
-    { q: 'NDA 대응?', q_en: 'Can you work under NDA?', a: 'NDA 체결 후 작업 가능. 비공개 요청 존중.', a_en: 'Yes, NDA-compliant projects are welcome.' },
-    { q: '수정은 몇 회?', q_en: 'How many revisions are included?', a: '편집 2회, 컬러 1회 기본 포함.', a_en: '2 rounds of editing, 1 round of color grading included as standard.' },
+    { q: '견적 기준은?', q_en: 'How is pricing determined?', a: '프로젝트의 복잡도, 촬영 일수, 로케이션, 투입 장비, 후반 작업 범위를 종합해서 산정합니다. 문의 주시면 프로젝트에 맞는 견적을 안내드리겠습니다.', a_en: 'Pricing is based on complexity, shoot days, location, equipment, and post-production scope. Reach out and we\'ll put together a quote tailored to your project.' },
+    { q: '세로 영상(9:16)도 제작하나요?', q_en: 'Do you shoot vertical (9:16)?', a: '네, 기본적으로 16:9와 9:16 멀티 포맷을 함께 설계합니다. SNS 콘텐츠 납품까지 하나의 촬영으로 커버할 수 있도록 준비합니다.', a_en: 'Yes — we design for both 16:9 and 9:16 from the start. One shoot, all formats covered.' },
+    { q: '수도권 외 촬영도 가능한가요?', q_en: 'Are you available outside Seoul?', a: '국내 어디서든 가능합니다. 해외 프로젝트도 일정과 예산에 따라 논의할 수 있으니 편하게 문의해 주세요.', a_en: 'Available anywhere in Korea. For international projects, let\'s talk — it depends on schedule and budget.' },
+    { q: '수정은 몇 회까지 가능한가요?', q_en: 'How many revisions are included?', a: '편집 2회, 컬러 1회가 기본으로 포함됩니다. 추가 수정이 필요한 경우 별도로 안내드립니다.', a_en: '2 rounds of editing and 1 round of color grading are included as standard. Additional revisions can be arranged if needed.' },
   ],
   gear: {
     Cameras: ['ARRI Alexa Mini LF', 'Sony FX6', 'Sony A7S III', 'RED Komodo-X'],

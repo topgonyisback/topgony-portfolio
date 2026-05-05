@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="site.css"/>
 <style>
 .cm { padding:80px var(--side-pad); display:grid; grid-template-columns:1fr 1.2fr; gap:80px; border-bottom:1px solid var(--border-subtle); }
+.toast { position:fixed; bottom:40px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--text); color:#000; font-family:var(--font-mono); font-size:11px; letter-spacing:var(--ls-meta); text-transform:uppercase; padding:14px 28px; white-space:nowrap; opacity:0; transition:opacity 0.3s ease, transform 0.3s ease; pointer-events:none; z-index:999; }
+.toast.is-error { background:#e55; color:#fff; }
+.toast.is-show { opacity:1; transform:translateX(-50%) translateY(0); }
 .info { display:flex; flex-direction:column; gap:36px; }
 .info__c { border-top:1px solid var(--border-subtle); padding-top:18px; }
 .info__c h3 { font-family:var(--font-mono); font-size:10px; letter-spacing:var(--ls-meta); text-transform:uppercase; color:var(--text-dim); margin:0 0 10px; font-weight:400; }
@@ -101,7 +104,6 @@
     <div class="form__f form__f--full" style="margin-bottom:24px"><label>Timeline</label><input name="timeline" data-i18n-placeholder="contact.form.timeline" placeholder="예: 2026년 6월 중순, 납품까지 4주"/></div>
     <div class="form__f form__f--full" style="margin-bottom:24px"><label>Brief</label><textarea name="brief" data-i18n-placeholder="contact.form.brief" placeholder="레퍼런스, 무드, 톤, 메시지 — 자유롭게."></textarea></div>
     <div class="form__a"><span data-i18n="contact.form.note">응답까지 평균 48시간</span><button type="submit" class="btn btn--p">SEND INQUIRY →</button></div>
-    <div id="form-result" style="display:none; margin-top:16px; font-family:var(--font-mono); font-size:12px; letter-spacing:var(--ls-meta); text-transform:uppercase;"></div>
   </form>
 </section>
 
@@ -111,6 +113,7 @@
 <div class="sh"><h2>FAQ.</h2><span data-i18n="contact.faq.subhead">5 · 자주 묻는 질문</span></div>
 <section class="faq" id="faq"></section>
 
+<div class="toast" id="toast"></div>
 <div id="ft"></div>
 
 <script src="i18n.js"></script><script src="data.js"></script><script src="components.js"></script>
@@ -128,11 +131,19 @@ document.getElementById('faq').innerHTML = TG.faq.map((f,i) =>
 
 applyI18n();
 
+// 토스트 알림
+function showToast(msg, isError = false) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.toggle('is-error', isError);
+  toast.classList.add('is-show');
+  setTimeout(() => toast.classList.remove('is-show'), 4000);
+}
+
 // Web3Forms 제출 처리
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = this.querySelector('[type=submit]');
-  const result = document.getElementById('form-result');
   btn.disabled = true;
   btn.textContent = 'SENDING...';
   try {
@@ -142,18 +153,15 @@ document.getElementById('contactForm').addEventListener('submit', async function
     });
     const json = await res.json();
     if (json.success) {
-      result.style.display = 'block';
-      result.style.color = 'var(--text)';
-      result.textContent = '✓ ' + (TG_LANG === 'ko' ? '문의가 접수되었습니다. 48시간 내 회신드리겠습니다.' : 'Inquiry received. We\'ll get back to you within 48h.');
+      showToast(TG_LANG === 'ko' ? '— 문의가 전달되었습니다. 곧 연락드리겠습니다.' : '— Inquiry sent. We\'ll be in touch shortly.');
       this.reset();
       btn.textContent = 'SENT ✓';
+      setTimeout(() => { btn.disabled = false; btn.textContent = 'SEND INQUIRY →'; }, 4000);
     } else {
       throw new Error();
     }
   } catch {
-    result.style.display = 'block';
-    result.style.color = '#e55';
-    result.textContent = TG_LANG === 'ko' ? '전송 실패. 이메일로 직접 문의해 주세요.' : 'Failed to send. Please email directly.';
+    showToast(TG_LANG === 'ko' ? '전송에 실패했습니다. 이메일로 직접 연락해 주세요.' : 'Something went wrong. Please email us directly.', true);
     btn.disabled = false;
     btn.textContent = 'SEND INQUIRY →';
   }

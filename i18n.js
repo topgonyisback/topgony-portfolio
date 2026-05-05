@@ -13,6 +13,12 @@ window.setLang = (lang) => {
 };
 
 window.I18N = {
+  // 공통 H1 슬로건
+  'hero.h1': {
+    ko: '필요한 것만,<br/>화면에 담습니다.',
+    en: 'Only what\'s needed,<br/>on screen.'
+  },
+
   // index.html
   'index.intro.heading': {
     ko: '짧게 자르고,<br/>오래 기다립니다.',
@@ -43,8 +49,8 @@ window.I18N = {
 
   // contact.html
   'contact.email.sub': {
-    ko: '업무 문의 · 평균 48시간 회신',
-    en: 'Business inquiries · Avg. 48h response'
+    ko: '업무 문의',
+    en: 'Business inquiries'
   },
   'contact.phone.sub': {
     ko: '평일 10:00 — 19:00 KST',

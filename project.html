@@ -129,9 +129,11 @@ document.getElementById('pmeta').innerHTML =
    <div><dt>— Date</dt><dd>${w.year}.${String(w.month).padStart(2,'0')}</dd></div>`;
 
 // 본문
+const descText = (t(w.desc, w.desc_en) || `${t(w.title, w.title_en)} — ${w.client} · ${w.year}`)
+  .replace(/ — /g, '<br/>— ');
 document.getElementById('pbody').innerHTML =
   `<div class="pbody__s">— NOTES<br/>${w.catLabel}<br/>${w.role}<br/><br/>${w.year}.${String(w.month).padStart(2,'0')}</div>
-   <div class="pbody__t"><p>${t(w.desc, w.desc_en) || `${t(w.title, w.title_en)} — ${w.client} · ${w.year}`}</p></div>`;
+   <div class="pbody__t"><p>${descText}</p></div>`;
 
 // 크레딧
 const roleMap = {'DIR':'DIRECTOR','DP':'DIRECTOR OF PHOTOGRAPHY','EDIT':'EDITOR'};

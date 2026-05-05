@@ -146,6 +146,9 @@ const related = TG.works.filter(x => x.no !== w.no).slice(0, 3).map(x => ({...x,
 document.getElementById('related').innerHTML = related.map(tplCard).join('');
 bindVideos();
 
+// 해시 변경 시 페이지 리로드 (NEXT PROJECT 네비게이션)
+window.addEventListener('hashchange', () => location.reload());
+
 // 다음 작품 네비게이션
 const next = TG.works[(idx + 1) % TG.works.length];
 document.getElementById('nxNext').innerHTML =

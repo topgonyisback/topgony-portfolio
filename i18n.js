@@ -39,8 +39,8 @@ window.I18N = {
     en: 'Every frame is a slice of time. Where pace, breath, and silence converge, the frame guides the viewer\'s gaze and holds emotion within. Topgony\'s work is grounded in technical precision — but never at the expense of the atmosphere of the moment.'
   },
   'about.bio.3': {
-    ko: '2019년부터 독립적으로 활동을 시작, ARC, Hyundai, Naver, Atelier Noir 등 국내외 브랜드와 협업해 왔습니다. 16:9 랜드스케이프부터 9:16 버티컬까지 다양한 포맷에 대응합니다.',
-    en: 'Operating independently since 2019, collaborating with domestic and international brands including ARC, Hyundai, Naver, and Atelier Noir. Fluent in all formats — 16:9 landscape to 9:16 vertical.'
+    ko: '2019년부터 독립적으로 활동해 왔습니다. 스포츠, 패션, 브랜드 필름 전반을 아우르며, 16:9 랜드스케이프부터 9:16 버티컬까지 다양한 포맷에 대응합니다.',
+    en: 'Working independently since 2019, across sports, fashion, and brand films. Fluent in all formats — 16:9 landscape to 9:16 vertical.'
   },
   'about.bio.4': {
     ko: '— 오래 붙잡고, 짧게 자르고, 가만히 기다립니다.',

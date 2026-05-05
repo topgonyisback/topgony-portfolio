@@ -49,11 +49,11 @@ window.TG = {
     { y: 2023, t: 'Seoul Fashion Film Festival', d: 'OFFICIAL SELECTION — Indigo dust', s: 'SELECT' },
   ],
   process: [
-    { n: '01', t: 'Inquiry', d: '폼 접수 후 48시간 내 회신.', d_en: 'Response within 48h of form submission.', dur: '48H' },
-    { n: '02', t: 'Treatment', d: '레퍼런스, 무드, 샷 리스트 공유.', d_en: 'Reference, mood, and shot list shared.', dur: '3—7일' },
-    { n: '03', t: 'Pre-production', d: '로케이션, 캐스팅, 장비, 계약.', d_en: 'Location, casting, equipment, contract.', dur: '1—2주' },
-    { n: '04', t: 'Shoot', d: '촬영 진행. 1~5일.', d_en: '1–5 days on set.', dur: '1—5일' },
-    { n: '05', t: 'Edit + Deliver', d: '편집·컬러·믹스 후 납품.', d_en: 'Edit, color grade, mix — then delivery.', dur: '1—3주' },
+    { n: '01', t: 'Inquiry', d: '문의 폼 또는 이메일로 프로젝트를 소개해 주세요. 접수 후 48시간 내 회신합니다.', d_en: 'Tell us about your project via the inquiry form or email. We respond within 48 hours.', dur: '48H', dur_en: '48H' },
+    { n: '02', t: 'Treatment', d: '레퍼런스, 무드, 샷 리스트를 함께 정리합니다. 방향성이 맞으면 견적을 안내드립니다.', d_en: 'We align on references, mood, and shot list. Once aligned, a quote is provided.', dur: '3—7일', dur_en: '3—7 days' },
+    { n: '03', t: 'Pre-production', d: '로케이션 헌팅, 캐스팅, 장비 준비, 계약 체결까지 프로덕션 전반을 준비합니다.', d_en: 'Location scouting, casting, equipment prep, and contract — everything before the shoot.', dur: '1—2주', dur_en: '1—2 weeks' },
+    { n: '04', t: 'Shoot', d: '현장에서 계획된 샷을 구현합니다. 촬영 일수는 프로젝트 규모에 따라 조정됩니다.', d_en: 'On set, we execute the planned shots. Shoot days vary by project scope.', dur: '1—5일', dur_en: '1—5 days' },
+    { n: '05', t: 'Edit + Deliver', d: '편집, 컬러 그레이딩, 사운드 믹스 후 최종 파일을 납품합니다. 수정 2회 포함.', d_en: 'Edit, color grade, and sound mix — then final delivery. 2 revision rounds included.', dur: '1—3주', dur_en: '1—3 weeks' },
   ],
   faq: [
     { q: '견적 기준은?', q_en: 'How is pricing determined?', a: '복잡도, 촬영 일수, 로케이션, 장비, 후반 작업 범위에 따라 책정됩니다.', a_en: 'Based on complexity, shoot days, location, equipment, and post-production scope.' },

@@ -122,7 +122,7 @@ document.getElementById('hd').innerHTML = tplHeader('contact');
 document.getElementById('ft').innerHTML = tplFooter();
 
 document.getElementById('proc').innerHTML = TG.process.map(p =>
-  `<div class="proc__c"><div class="proc__n">${p.n}</div><h4>${p.t}</h4><p>${t(p.d, p.d_en)}</p><div class="proc__d">${p.dur}</div></div>`
+  `<div class="proc__c"><div class="proc__n">${p.n}</div><h4>${p.t}</h4><p>${t(p.d, p.d_en)}</p><div class="proc__d">${t(p.dur, p.dur_en)}</div></div>`
 ).join('');
 
 document.getElementById('faq').innerHTML = TG.faq.map((f,i) =>

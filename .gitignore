@@ -1,0 +1,10 @@
+# 원본 영상 (미사용 — preview/ 폴더 압축본만 사용)
+videos/*.mp4
+!videos/hero.mp4
+
+# 원본 MOV 파일
+videos/*.MOV
+videos/*.mov
+
+# 원본 썸네일 (thumbs/ 폴더 webp만 사용)
+thumbs_original/

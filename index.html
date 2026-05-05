@@ -35,10 +35,10 @@
   </div>
   <div class="hero-film__content">
     <div>
-      <div class="hero__k">— Topgony / Director · DP</div>
-      <h1 data-i18n="hero.h1">필요한 것만,<br/>화면에 담습니다.</h1>
+      <div class="hero__k anim" style="animation-delay:0.05s">— Topgony / Director · DP</div>
+      <h1 class="anim" style="animation-delay:0.18s" data-i18n="hero.h1">필요한 것만,<br/>화면에 담습니다.</h1>
     </div>
-    <div class="hero__s">SEOUL — SINCE 2019<br/>42 FILMS · 30+ CLIENTS<br/><br/>MV · BRAND · FASHION · CF<br/>16:9 / 9:16 · 4K</div>
+    <div class="hero__s anim" style="animation-delay:0.32s">SEOUL — SINCE 2019<br/>42 FILMS · 30+ CLIENTS<br/><br/>MV · BRAND · FASHION · CF<br/>16:9 / 9:16 · 4K</div>
   </div>
 </section>
 
@@ -72,6 +72,7 @@ document.getElementById('hd').innerHTML = tplHeader('index');
 document.getElementById('ft').innerHTML = tplFooter();
 document.getElementById('grid').innerHTML = TG.works.slice(0,8).map(tplCard).join('');
 bindVideos();
+bindCardAnim();
 applyI18n();
 </script>
 </body></html>

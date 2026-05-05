@@ -165,5 +165,15 @@ a { color: inherit; text-decoration: none; }
 .lang-btn { font-family:var(--font-mono); font-size:12px; letter-spacing:var(--ls-meta); text-transform:uppercase; background:transparent; border:1px solid rgba(255,255,255,0.2); color:var(--text-dim); padding:4px 12px; cursor:pointer; transition: color var(--d-fast) var(--e-out), border-color var(--d-fast) var(--e-out); }
 .lang-btn:hover { color:var(--text); border-color:rgba(255,255,255,0.6); }
 
+/* === PAGE ENTRY ANIMATION === */
+@keyframes tg-fade-up {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.anim {
+  opacity:0;
+  animation: tg-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 /* === reduce motion === */
 @media (prefers-reduced-motion: reduce) { * { animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }

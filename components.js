@@ -49,6 +49,14 @@ window.tplCard = (w) => `
   </div>
 </a>`;
 
+// 카드 진입 애니메이션
+window.bindCardAnim = () => {
+  document.querySelectorAll('.card').forEach((card, i) => {
+    card.classList.add('anim');
+    card.style.animationDelay = `${0.05 + i * 0.07}s`;
+  });
+};
+
 // 카드 비디오 호버 재생
 window.bindVideos = () => {
   document.querySelectorAll('.card').forEach(card => {

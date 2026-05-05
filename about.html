@@ -20,14 +20,20 @@
 .svc__c p { margin:0 0 auto; font-size:14px; line-height:1.55; color:var(--text-muted); }
 .svc__no { font-family:var(--font-mono); font-size:10px; letter-spacing:var(--ls-meta); text-transform:uppercase; color:var(--text-dim); margin-bottom:14px; }
 .svc__m { padding-top:16px; margin-top:24px; border-top:1px solid var(--border-subtle); font-family:var(--font-mono); font-size:10px; letter-spacing:var(--ls-meta); text-transform:uppercase; color:var(--text); }
-.brands { padding:40px var(--side-pad); border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle); display:flex; align-items:center; gap:0; overflow:hidden; }
+.brands { padding:40px var(--side-pad); border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; gap:0; overflow:hidden; }
 .brands__label { font-family:var(--font-mono); font-size:10px; letter-spacing:var(--ls-meta); text-transform:uppercase; color:var(--text-dim); white-space:nowrap; margin-right:40px; flex-shrink:0; }
 .brands__list { display:flex; align-items:center; gap:0; flex-wrap:nowrap; }
 .brands__item { font-family:var(--font-display); font-size:22px; font-weight:500; letter-spacing:-0.02em; color:var(--ink-400); white-space:nowrap; transition:color var(--d-fast) var(--e-out); }
 .brands__item:hover { color:var(--text); }
 .brands__logo { height:auto; width:auto; max-width:none; object-fit:contain; opacity:1; display:block; }
 .brands__div { display:none; }
-@media (max-width:640px) { .brands { padding:28px 16px; gap:0; } .brands__list { gap:24px; } .brands__item { font-size:17px; } }
+@keyframes tg-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@media (max-width:640px) {
+  .brands { padding:24px 0; justify-content:flex-start; overflow:hidden; }
+  .brands__list { animation:tg-marquee 10s linear infinite; gap:40px; flex-shrink:0; }
+  .brands__logo { height:36px; width:auto; }
+  .brands__item { font-size:17px; }
+}
 .press__r { display:grid; grid-template-columns:80px 1fr 2fr 120px; gap:32px; padding:18px var(--side-pad); border-bottom:1px solid var(--border-subtle); font-family:var(--font-mono); font-size:11px; letter-spacing:var(--ls-wide); color:var(--text-muted); text-transform:uppercase; }
 .press__r strong { color:var(--text); font-weight:400; font-family:var(--font-display); font-size:16px; letter-spacing:-0.015em; text-transform:none; }
 .cta { padding:120px var(--side-pad); border-top:1px solid var(--border-subtle); display:grid; grid-template-columns:1fr auto; gap:48px; align-items:end; }
@@ -122,5 +128,11 @@ document.getElementById('press').innerHTML = TG.press.map(p =>
 ).join('');
 
 applyI18n();
+
+// 모바일에서 로고 마키 seamless 루프 — 세트 1회 복제
+if (window.innerWidth <= 640) {
+  const list = document.querySelector('.brands__list');
+  if (list) list.innerHTML += list.innerHTML;
+}
 </script>
 </body></html>

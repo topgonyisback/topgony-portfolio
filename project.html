@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title id="pageTitle">Topgony — Project</title>
+<link rel="stylesheet" href="site.css"/>
+<style>
+.crumbs { padding:90px var(--side-pad) 16px; display:flex; gap:12px; align-items:center; font-family:var(--font-mono); font-size:11px; letter-spacing:var(--ls-meta); text-transform:uppercase; color:var(--text-muted); }
+.crumbs span { color:var(--text-dim); }
+.crumbs .cur { color:var(--text); }
+.phero { padding:0 var(--side-pad) 48px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; border-bottom:1px solid var(--border-subtle); }
+.phero h1 { font-family:var(--font-display); font-size:clamp(48px,6vw,96px); font-weight:500; line-height:0.92; letter-spacing:-0.04em; margin:0; }
+.phero h1 em { font-style:normal; color:var(--text-dim); }
+.phero__lede { font-size:18px; line-height:1.5; color:var(--text-muted); max-width:52ch; padding-bottom:16px; }
+
+.player-wrap { padding:48px var(--side-pad); display:flex; justify-content:center; border-bottom:1px solid var(--border-subtle); }
+.player { position:relative; background:#0a0a0a; overflow:hidden; flex-shrink:0; }
+.player.ratio-916 { width:360px; aspect-ratio:9/16; }
+.player.ratio-169 { width:min(720px, 100%); aspect-ratio:16/9; }
+.player__yt { position:absolute; inset:0; }
+.player__yt iframe { width:100%; height:100%; border:0; display:block; }
+.player__thumb { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+
+.pmeta { padding:48px var(--side-pad); display:grid; grid-template-columns:repeat(6,1fr); gap:32px; border-bottom:1px solid var(--border-subtle); }
+.pmeta dt { font-family:var(--font-mono); font-size:10px; letter-spacing:var(--ls-meta); text-transform:uppercase; color:var(--text-dim); margin:0 0 8px; }
+.pmeta dd { margin:0; font-family:var(--font-display); font-size:20px; font-weight:500; letter-spacing:-0.015em; }
+.pbody { padding:80px var(--side-pad); display:grid; grid-template-columns:1fr 2fr; gap:64px; border-bottom:1px solid var(--border-subtle); }
+.pbody__s { font-family:var(--font-mono); font-size:11px; letter-spacing:var(--ls-meta); text-transform:uppercase; color:var(--text-dim); line-height:1.8; }
+.pbody__t { font-size:18px; line-height:1.6; color:var(--text); max-width:62ch; }
+.pbody__t p { margin:0 0 20px; }
+.creds { padding:80px var(--side-pad); border-top:1px solid var(--border-subtle); display:grid; grid-template-columns:1fr 2fr; gap:48px; }
+.creds h3 { font-family:var(--font-display); font-size:40px; font-weight:500; letter-spacing:-0.025em; margin:0; }
+.creds__l { display:grid; grid-template-columns:1fr 1fr; gap:18px 48px; }
+.creds__r { display:flex; justify-content:space-between; padding-bottom:12px; border-bottom:1px solid var(--border-subtle); font-family:var(--font-mono); font-size:11px; letter-spacing:var(--ls-wide); color:var(--text-muted); text-transform:uppercase; }
+.creds__r strong { color:var(--text); font-weight:400; letter-spacing:var(--ls-meta); }
+.related { padding:48px var(--side-pad); border-top:1px solid var(--border-subtle); }
+.related h3 { font-family:var(--font-display); font-size:40px; font-weight:500; letter-spacing:-0.025em; margin:0 0 24px; }
+.rg { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.nx { padding:80px var(--side-pad); border-top:1px solid var(--border); display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+.nx a { color:var(--text); }
+.nx__k { font-family:var(--font-mono); font-size:11px; letter-spacing:var(--ls-meta); text-transform:uppercase; color:var(--text-dim); margin-bottom:12px; }
+.nx__t { font-family:var(--font-display); font-size:48px; font-weight:500; letter-spacing:-0.03em; line-height:1; transition: color var(--d-base) var(--e-out); }
+.nx a:hover .nx__t { color:var(--text-muted); }
+.nx__rt { text-align:right; }
+@media (max-width:640px) {
+  .crumbs { padding:72px 16px 12px; gap:8px; flex-wrap:wrap; }
+  .phero { grid-template-columns:1fr; padding:0 16px 32px; gap:20px; }
+  .phero__lede { font-size:16px; }
+  .player-wrap { padding:32px 16px; }
+  .player.ratio-916 { width:min(360px, 90vw); }
+  .player.ratio-169 { width:100%; }
+  .pmeta { grid-template-columns:repeat(2,1fr); padding:32px 16px; gap:20px; }
+  .pbody { grid-template-columns:1fr; padding:48px 16px; gap:32px; }
+  .creds { grid-template-columns:1fr; padding:48px 16px; gap:24px; }
+  .creds__l { grid-template-columns:1fr; gap:12px; }
+  .related { padding:32px 16px; }
+  .rg { grid-template-columns:1fr; }
+  .nx { grid-template-columns:1fr; padding:48px 16px; gap:32px; }
+  .nx__rt { text-align:left; }
+  .nx__t { font-size:32px; }
+}
+</style></head><body>
+<div id="hd"></div>
+<div id="crumbs" class="crumbs"></div>
+<section id="phero" class="phero"></section>
+<div class="player-wrap">
+  <div class="player" id="player"></div>
+</div>
+<dl class="pmeta" id="pmeta"></dl>
+<section class="pbody" id="pbody"></section>
+<section style="padding:48px var(--side-pad) 80px; border-top:1px solid var(--border-subtle);">
+  <div class="creds__l" id="creds"></div>
+</section>
+<section class="related">
+  <h3>Related.</h3>
+  <div class="rg" id="related"></div>
+</section>
+<nav class="nx">
+  <a href="work.html"><div class="nx__k">← BACK TO WORK</div><div class="nx__t">All projects</div></a>
+  <div id="nxNext"></div>
+</nav>
+<div id="ft"></div>
+
+<script src="i18n.js"></script><script src="data.js"></script><script src="components.js"></script>
+<script>
+document.getElementById('hd').innerHTML = tplHeader('work');
+document.getElementById('ft').innerHTML = tplFooter();
+
+// URL 파라미터에서 작품 번호 읽기
+const no = location.hash.replace('#no=', '').trim() || TG.works[0].no;
+const idx = TG.works.findIndex(x => x.no === no);
+const w = idx >= 0 ? TG.works[idx] : TG.works[0];
+
+// 타이틀
+document.getElementById('pageTitle').textContent = `Topgony — ${t(w.title, w.title_en)}`;
+
+// 브레드크럼
+document.getElementById('crumbs').innerHTML =
+  `<a href="index.html">TOPGONY</a><span>/</span>
+   <a href="work.html">WORK</a><span>/</span>
+   <span>${w.catLabel}</span><span>/</span>
+   <span class="cur">${w.no} — ${t(w.title, w.title_en)}</span>`;
+
+// 히어로
+document.getElementById('phero').innerHTML =
+  `<div>
+     <div class="hero__k">— PROJECT / ${w.no} · ${w.year} · ${w.catLabel} · ${w.client}</div>
+     <h1>${t(w.title, w.title_en)}</h1>
+   </div>
+   <p class="phero__lede">${w.client} · ${w.catLabel} · ${w.year} · ${w.dur}</p>`;
+
+// 플레이어 비율 설정
+const player = document.getElementById('player');
+player.classList.add(w.ratio === '16/9' ? 'ratio-169' : 'ratio-916');
+
+// YouTube iframe 또는 썸네일 fallback 렌더링
+if (w.youtube_id) {
+  player.innerHTML = `<div class="player__yt"><iframe src="https://www.youtube.com/embed/${w.youtube_id}?rel=0&modestbranding=1" title="${t(w.title, w.title_en)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
+} else if (w.thumb) {
+  player.innerHTML = `<img class="player__thumb" src="${w.thumb}" alt="${t(w.title, w.title_en)}"/>`;
+}
+
+// 메타 정보
+const formatLabel = w.ratio === '16/9' ? `16:9 ${w.catLabel}` : `9:16 ${w.catLabel}`;
+document.getElementById('pmeta').innerHTML =
+  `<div><dt>— Client</dt><dd>${w.client}</dd></div>
+   <div><dt>— Year</dt><dd>${w.year}</dd></div>
+   <div><dt>— Role</dt><dd>${w.role}</dd></div>
+   <div><dt>— Format</dt><dd>${formatLabel}</dd></div>
+   <div><dt>— Duration</dt><dd>${w.dur}</dd></div>
+   <div><dt>— Date</dt><dd>${w.year}.${String(w.month).padStart(2,'0')}</dd></div>`;
+
+// 본문
+document.getElementById('pbody').innerHTML =
+  `<div class="pbody__s">— NOTES<br/>${w.catLabel}<br/>${w.role}<br/><br/>${w.year}.${String(w.month).padStart(2,'0')}</div>
+   <div class="pbody__t"><p>${t(w.desc, w.desc_en) || `${t(w.title, w.title_en)} — ${w.client} · ${w.year}`}</p></div>`;
+
+// 크레딧
+const roleMap = {'DIR':'DIRECTOR','DP':'DIRECTOR OF PHOTOGRAPHY','EDIT':'EDITOR'};
+const roles = w.role.split(' · ').map(r => [roleMap[r] || r, 'Topgony']);
+const credRows = [...roles, ['CLIENT', w.client]];
+document.getElementById('creds').innerHTML = credRows.map(([k,v]) =>
+  `<div class="creds__r"><strong>${k}</strong><span>${v}</span></div>`
+).join('');
+
+// 관련 작품 (현재 작품 제외, 최대 3개)
+const related = TG.works.filter(x => x.no !== w.no).slice(0, 3).map(x => ({...x, span:4}));
+document.getElementById('related').innerHTML = related.map(tplCard).join('');
+bindVideos();
+
+// 다음 작품 네비게이션
+const next = TG.works[(idx + 1) % TG.works.length];
+document.getElementById('nxNext').innerHTML =
+  `<a href="project.html#no=${next.no}">
+     <div class="nx__k nx__rt">NEXT PROJECT →</div>
+     <div class="nx__t nx__rt">${t(next.title, next.title_en)}</div>
+   </a>`;
+
+</script>
+</body></html>

@@ -120,7 +120,7 @@ document.getElementById('tl').innerHTML = TG.timeline.map(tl =>
 ).join('');
 
 document.getElementById('svc').innerHTML = TG.services.map(s =>
-  `<div class="svc__c"><span class="svc__no">— ${s.no}</span><h3>${s.t}</h3><p>${t(s.d, s.d_en)}</p><div class="svc__m">${s.m}</div></div>`
+  `<div class="svc__c"><span class="svc__no">— ${s.no}</span><h3>${s.t}</h3><p>${t(s.d, s.d_en)}</p><div class="svc__m">${t(s.m, s.m_en)}</div></div>`
 ).join('');
 
 document.getElementById('press').innerHTML = TG.press.map(p =>

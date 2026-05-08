@@ -138,6 +138,7 @@ document.getElementById('press').innerHTML = TG.press.map(p =>
 ).join('');
 
 applyI18n();
+bindCopyPhone();
 
 // 모바일 마키 — 이미지 로드 완료 후 실제 너비 측정해서 seamless 루프
 if (window.innerWidth <= 640) {

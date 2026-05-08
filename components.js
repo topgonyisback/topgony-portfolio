@@ -27,7 +27,7 @@ window.tplFooter = () => `
     <li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li>
   </ul></div>
   <div class="ft__c"><h5>— Contact</h5><ul>
-    <li><a href="mailto:${T.brand.email}">${T.brand.email}</a></li><li><a>${T.brand.phone}</a></li>
+    <li><a href="mailto:${T.brand.email}">${T.brand.email}</a></li><li><a class="copy-phone" data-phone="${T.brand.phone}" style="cursor:pointer;">${T.brand.phone}</a></li>
   </ul></div>
   <div class="ft__c"><h5>— Social</h5><ul>
     <li><a href="https://www.instagram.com/topgony/" target="_blank" rel="noopener">Instagram ↗</a></li>
@@ -106,4 +106,18 @@ window.bindFilter = () => {
       el.style.display = (cat === 'all' || el.dataset.cat === cat) ? '' : 'none';
     });
   }));
+};
+
+// 전화번호 클립보드 복사
+window.bindCopyPhone = () => {
+  document.querySelectorAll('.copy-phone').forEach(el => {
+    el.addEventListener('click', () => {
+      const phone = el.dataset.phone;
+      navigator.clipboard.writeText(phone).then(() => {
+        const orig = el.textContent;
+        el.textContent = TG_LANG === 'ko' ? '복사됨 ✓' : 'Copied ✓';
+        setTimeout(() => el.textContent = orig, 2000);
+      });
+    });
+  });
 };

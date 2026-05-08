@@ -139,15 +139,21 @@ document.getElementById('press').innerHTML = TG.press.map(p =>
 
 applyI18n();
 
-// 모바일 마키 — 복제 완료 후 레이아웃 확정된 다음 애니메이션 적용
+// 모바일 마키 — 이미지 로드 완료 후 실제 너비 측정해서 seamless 루프
 if (window.innerWidth <= 640) {
   const list = document.querySelector('.brands__list');
   if (list) {
-    list.innerHTML += list.innerHTML;
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        list.style.animation = 'tg-marquee 10s linear infinite';
-      });
+    const imgs = list.querySelectorAll('img');
+    const loads = [...imgs].map(img =>
+      img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })
+    );
+    Promise.all(loads).then(() => {
+      const originalWidth = list.scrollWidth;
+      list.innerHTML += list.innerHTML;
+      const style = document.createElement('style');
+      style.textContent = `@keyframes tg-marquee-m { from { transform:translateX(0); } to { transform:translateX(-${originalWidth}px); } }`;
+      document.head.appendChild(style);
+      list.style.animation = 'tg-marquee-m 10s linear infinite';
     });
   }
 }

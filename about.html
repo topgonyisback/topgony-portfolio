@@ -115,7 +115,7 @@
 
 <section class="cta">
   <h2>Let's make<br/>something <em>loud.</em></h2>
-  <div class="cta__r"><span>topgonyfilm@gmail.com</span><a class="btn btn--p btn--lg" href="contact.html">START A PROJECT →</a></div>
+  <div class="cta__r"><span class="copy-email" data-email="topgonyfilm@gmail.com" style="cursor:pointer;">topgonyfilm@gmail.com</span><a class="btn btn--p btn--lg" href="contact.html">START A PROJECT →</a></div>
 </section>
 
 <div id="ft"></div>
@@ -140,23 +140,46 @@ document.getElementById('press').innerHTML = TG.press.map(p =>
 applyI18n();
 bindCopyPhone();
 
-// 모바일 마키 — 이미지 로드 완료 후 실제 너비 측정해서 seamless 루프
-if (window.innerWidth <= 640) {
+// 마키 — 브라우저 너비 640px 이하일 때 롤링, 초과 시 정적 (리사이즈 대응)
+(function() {
+  const BP = 640;
   const list = document.querySelector('.brands__list');
-  if (list) {
+  if (!list) return;
+  const originalHTML = list.innerHTML;
+  let active = false;
+
+  function enableMarquee() {
+    if (active) return;
+    active = true;
+    list.innerHTML = originalHTML;
     const imgs = list.querySelectorAll('img');
     const loads = [...imgs].map(img =>
       img.complete ? Promise.resolve() : new Promise(r => { img.onload = r; img.onerror = r; })
     );
     Promise.all(loads).then(() => {
-      const originalWidth = list.scrollWidth;
+      const w = list.scrollWidth;
       list.innerHTML += list.innerHTML;
-      const style = document.createElement('style');
-      style.textContent = `@keyframes tg-marquee-m { from { transform:translateX(0); } to { transform:translateX(-${originalWidth}px); } }`;
-      document.head.appendChild(style);
+      let s = document.getElementById('tg-marquee-style');
+      if (!s) { s = document.createElement('style'); s.id = 'tg-marquee-style'; document.head.appendChild(s); }
+      s.textContent = `@keyframes tg-marquee-m { from{transform:translateX(0)} to{transform:translateX(-${w}px)} }`;
       list.style.animation = 'tg-marquee-m 10s linear infinite';
     });
   }
-}
+
+  function disableMarquee() {
+    if (!active) return;
+    active = false;
+    list.style.animation = '';
+    list.innerHTML = originalHTML;
+  }
+
+  function check() {
+    window.innerWidth <= BP ? enableMarquee() : disableMarquee();
+  }
+
+  check();
+  let t;
+  window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(check, 150); });
+})();
 </script>
 </body></html>

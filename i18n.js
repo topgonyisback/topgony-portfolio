@@ -11,7 +11,13 @@ window.setLang = (lang) => {
   localStorage.setItem('tg-lang', lang);
   const url = new URL(location.href);
   url.searchParams.delete('lang');
-  location.href = url.toString();
+  const newUrl = url.toString();
+  // 해시 URL은 같은 주소로 설정해도 브라우저가 reload 안 함 → 강제 reload
+  if (newUrl === location.href) {
+    location.reload();
+  } else {
+    location.href = newUrl;
+  }
 };
 
 window.I18N = {
